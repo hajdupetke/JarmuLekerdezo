@@ -15,7 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('searched_plate');
             $table->timestamp('search_time');
+            $table->unsignedBigInteger('user_id')->index();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')
+            ->on('users')->cascadeOnDelete();
         });
     }
 
