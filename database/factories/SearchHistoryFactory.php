@@ -17,7 +17,8 @@ class SearchHistoryFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'searched_license' => strtoupper(fake()->lexify('???')) . '-' . fake()->numerify('###'),
+            'search_time' => fake()->dateTime()->format('Y-m-d H:i:s'),
         ];
     }
 }

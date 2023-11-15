@@ -20,7 +20,6 @@ return new class extends Migration
                     ->on('vehicles')->onDelete('cascade');
             $table->foreign('incident_id')->references('id')
                     ->on('incidents')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

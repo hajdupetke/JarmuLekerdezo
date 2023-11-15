@@ -18,5 +18,29 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        //generate 10 users with search histories
+
+        \App\Models\User::factory(10)->create()->each(function ($user) {
+            //Seed the relation with 5 search history
+
+            $history = \App\Models\SearchHistory::factory(5)->make();
+            $user->searchHistory()->saveMany($history);
+        }); 
+
+        // generate vehicles
+        \App\Models\Vehicle::factory(10)->create();
+
+        // generate incidents
+        \App\Models\Incident::factory(20)->create();
+
+        // populate pivot table
+        $incidents = \App\Models\Incident::all();
+
+        \App\Models\Vehicle::all()->each(function ($vehicle) use ($incidents) {
+            $vehicle->incidents()->attach(
+                $incidents->random(rand(1, 5))->pluck('id')->toArray()
+            );
+        });
     }
 }

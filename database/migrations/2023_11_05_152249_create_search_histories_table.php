@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('search_histories', function (Blueprint $table) {
             $table->id();
-            $table->string('searched_plate');
+            $table->string('searched_license');
             $table->timestamp('search_time');
-            $table->unsignedBigInteger('user_id')->index();
-            $table->timestamps();
-
+            $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')
             ->on('users')->cascadeOnDelete();
+            $table->timestamps();
         });
     }
 

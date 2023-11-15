@@ -17,6 +17,6 @@ class Incident extends Model
 
     public function vehicles()
     {
-        return $this->belongsToMany(Vehicles::class, 'vehicle_incident', 'incident_id', 'vehicle_id');
+        return $this->belongsToMany(Vehicle::class, 'vehicle_incident', 'incident_id', 'vehicle_id');
     }
 }

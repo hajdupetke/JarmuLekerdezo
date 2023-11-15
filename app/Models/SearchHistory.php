@@ -12,7 +12,6 @@ class SearchHistory extends Model
     protected $fillable = [
         'searched_license',
         'search_time',
-        'user_id',
     ];
 
     public function user()
