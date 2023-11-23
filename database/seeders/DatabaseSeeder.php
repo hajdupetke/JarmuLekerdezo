@@ -19,17 +19,20 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+         // generate vehicles
+         \App\Models\Vehicle::factory(10)->create();
+
         //generate 10 users with search histories
 
         \App\Models\User::factory(10)->create()->each(function ($user) {
             //Seed the relation with 5 search history
 
-            $history = \App\Models\SearchHistory::factory(5)->make();
+            $history = \App\Models\SearchHistory::factory(3)->make();
+            
             $user->searchHistory()->saveMany($history);
         }); 
 
-        // generate vehicles
-        \App\Models\Vehicle::factory(10)->create();
+       
 
         // generate incidents
         \App\Models\Incident::factory(20)->create();

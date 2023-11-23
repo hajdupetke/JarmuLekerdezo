@@ -19,6 +19,7 @@ return new class extends Migration
             $table->year('year');
             $table->string('image');
             $table->timestamps();
+            $table->unique('license');
         });
     }
 

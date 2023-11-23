@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('search_histories', function (Blueprint $table) {
             $table->id();
             $table->string('searched_license');
-            $table->timestamp('search_time');
+            $table->timestamp('search_time')->useCurrent()->useCurrentOnUpdate();
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')
             ->on('users')->cascadeOnDelete();

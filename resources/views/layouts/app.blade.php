@@ -30,6 +30,14 @@
             <!-- Page Content -->
             <main>
                 {{ $slot }}
+                <div class="flex justify-center items-center pb-5">
+                <a 
+                    class="inline-flex my-3 items-center justify-center text-sm shadow-lg border border-gray-300 dark:border-gray-700 font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 rounded-full transition-all duration-500 ease-in-out transform hover:scale-110 hover:rotate-12 dark:bg-gray-800 dark:text-white cursor-pointer"
+                    href={{route('home')}}
+                    >
+                    Vissza a főoldalra
+                </a>
+                </div>
             </main>
         </div>
     </body>

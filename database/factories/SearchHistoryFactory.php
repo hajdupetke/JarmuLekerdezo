@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Vehicle;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\SearchHistory>
@@ -16,8 +17,11 @@ class SearchHistoryFactory extends Factory
      */
     public function definition(): array
     {
+        //get random vehicle
+        $randVehicle = Vehicle::inRandomOrder()->first();
+
         return [
-            'searched_license' => strtoupper(fake()->lexify('???')) . '-' . fake()->numerify('###'),
+            'searched_license' => $randVehicle->license,
             'search_time' => fake()->dateTime()->format('Y-m-d H:i:s'),
         ];
     }

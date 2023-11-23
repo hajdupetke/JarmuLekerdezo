@@ -49,7 +49,7 @@ class User extends Authenticatable
         'is_premium' => 'boolean',
     ];
 
-    public function searchHistory(): HasMany
+    public function searchHistory()
     {
         return $this->hasMany(SearchHistory::class, 'user_id');
     } 
