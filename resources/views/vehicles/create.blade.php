@@ -17,6 +17,7 @@
           class="flex h-10 w-full rounded-md border border-input px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
           id="license_plate"
           name="license_plate"
+          value="{{old('license_plate') ?? null}}"
           placeholder="Adja meg a rendszámot"
           type='text'
         />
@@ -38,6 +39,7 @@
           class="flex h-10 w-full rounded-md border border-input px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
           id="brand"
           name='brand'
+          value="{{old('brand') ?? null}}"
           placeholder="Adja meg a márka nevét"
           type='text'
         />
@@ -59,6 +61,7 @@
           class="flex h-10 w-full rounded-md border border-input px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
           id="model"
           name='model'
+          value="{{old('model') ?? null}}"
           placeholder="Adja meg a modelt"
           type='text'
         />
@@ -80,6 +83,7 @@
           class="flex h-10 w-full rounded-md border border-input px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
           id="year"
           name='year'
+          value="{{old('year') ?? null}}"
           placeholder="Adja meg az évjáratot"
           type='number'
         />
@@ -101,6 +105,7 @@
           class="flex w-full rounded-md py-2 text-sm ring-offset-background file:border-0 file:bg-gray-800 file:cursor-pointer file:hover:bg-gray-600 file:duration-150 file:text-white file:px-4 file:py-2 file:mr-2 file:rounded-lg  file:text-md file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50  text-gray-800 dark:text-gray-200"
           id="image"
           type="file"
+          value="{{old('image') ?? null}}"
           name='image'
         />
         @error('license_plate')

@@ -22,16 +22,31 @@ class DatabaseSeeder extends Seeder
          // generate vehicles
          \App\Models\Vehicle::factory(10)->create();
 
-        //generate 10 users with search histories
+        //generate 15 users with search histories
 
-        \App\Models\User::factory(10)->create()->each(function ($user) {
+        \App\Models\User::factory(15)->create()->each(function ($user) {
             //Seed the relation with 5 search history
 
-            $history = \App\Models\SearchHistory::factory(3)->make();
-            
+            $history = \App\Models\SearchHistory::factory(3)->make();       
             $user->searchHistory()->saveMany($history);
         }); 
 
+        // make 5 random users to be premium users
+
+        \App\Models\User::all()->random(5)->each(function ($user) {
+            $user->is_premium = 1;
+            $user->save();
+        });
+
+        // make 1 random user to be admin
+        // make admin email admin@admin.com
+
+        \App\Models\User::all()->random(1)->each(  function ($user) {
+            $user->email = 'admin@admin.com';
+            $user->is_admin = 1;
+            $user->is_premium = 1;
+            $user->save();
+        });
        
 
         // generate incidents

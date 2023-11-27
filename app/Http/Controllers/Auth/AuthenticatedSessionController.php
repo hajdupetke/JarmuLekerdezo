@@ -8,6 +8,8 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+
 use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
@@ -29,6 +31,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if(Session::get('redirectedFrom')) {
+            $route = Session::get('redirectedFrom');
+            Session::forget('redirectedFrom');
+            return redirect()->route($route);
+        }
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

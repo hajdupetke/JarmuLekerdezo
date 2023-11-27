@@ -19,10 +19,4 @@ class SearchHistory extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
-    public function vehicle()
-    {
-        $vehicle = Vehicle::where('license', $this->searched_license)->get();
-        return $vehicle;
-    }
 }

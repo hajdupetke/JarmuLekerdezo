@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-slot name="title">Főoldal</x-slot>
 
-    <section class="w-full h-screen flex flex-col items-center justify-center bg-zinc-100 dark:bg-zinc-800">
+    <section class="w-full h-full flex flex-col items-center justify-center bg-zinc-100 dark:bg-zinc-800">
         <h1 class="text-4xl font-bold text-center mb-4 text-zinc-900 dark:text-zinc-50">
             Jármű Lekérdező
         </h1>

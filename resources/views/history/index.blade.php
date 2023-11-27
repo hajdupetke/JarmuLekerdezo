@@ -8,12 +8,12 @@
   
   @foreach($sorted as $key => $item)
   @php
-    $vehicle = $item->vehicle()[0];
+    $vehicle = $vehicles->where('license', $item->searched_license)->firstOrFail();
     $imageSrc = (substr($vehicle->image, 0, 4) == 'http') ? $vehicle->image : asset('storage/images/' . $vehicle->image);
   @endphp
   <a href={{route('vehicles.show', $vehicle)}}>
     <div
-      class="border text-card-foreground my-4 bg-white dark:bg-zinc-800 rounded-lg overflow-hidden shadow-lg max-w-xl mx-auto dark:border-black"
+      class="border text-card-foreground my-4 bg-white dark:bg-zinc-600 rounded-lg overflow-hidden shadow-lg max-w-xl mx-auto dark:border-black"
     >
       <div class="flex">
         <div class="w-1/2">

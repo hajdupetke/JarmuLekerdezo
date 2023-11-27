@@ -22,7 +22,7 @@ class SearchHistoryFactory extends Factory
 
         return [
             'searched_license' => $randVehicle->license,
-            'search_time' => fake()->dateTime()->format('Y-m-d H:i:s'),
+            'search_time' => fake()->dateTimeBetween('-2 years', 'now')->format('Y-m-d H:i:s'),
         ];
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
 use App\Models\Vehicle;
 use App\Models\SearchHistory;
 
@@ -13,6 +14,7 @@ class VehicleController extends Controller
 {
     public function search(Request $request) {
         if(!auth()->check()){
+            Session::put('redirectedFrom', 'home');
             return redirect()->route('login');
         }
 
@@ -45,30 +47,47 @@ class VehicleController extends Controller
         }
     }
     public function show(Vehicle $vehicle) {
+        if(!auth()->check()){
+            Session::put('redirectedFrom', 'home');
+
+            return redirect()->route('login');
+        }
         $imageSrc = (substr($vehicle->image, 0, 4) == 'http') ? $vehicle->image : asset('storage/images/' . $vehicle->image);
     
+        $incidents = $vehicle->incidents->sortByDesc('time');
         return view('vehicles.show', [
             'vehicle' => $vehicle,
-            'incidents' => $vehicle->incidents,
+            'incidents' => $incidents,
             'imageSrc' => $imageSrc
         ]);
     }
 
     public function create() {
         if(!auth()->check()){
+            Session::put('redirectedFrom', 'vehicles.create');
+
             return redirect()->route('login');
         }
 
         if(auth()->user()->is_admin != 1){
-            return abort(403);
+            return abort(403, 'Nem rendelkezel adminisztrátori joggal 👨🏼‍⚖️');
         }
 
         return view('vehicles.create');
     }
 
     public function store(Request $request) {
+        if(!auth()->check()){
+            Session::put('redirectedFrom', 'vehicles.create');
+
+            return redirect()->route('login');
+        }
+
+        if(auth()->user()->is_admin != 1){
+            return abort(403);
+        }
         $request->validate([
-            'license_plate' => 'required|regex:/[a-z]{3}-{0,1}[0-9]{3}/i|min:6|max:7',
+            'license_plate' => 'required|unique:vehicles,license|regex:/[a-z]{3}-{0,1}[0-9]{3}/i|min:6|max:7',
             'brand' => 'required|min:3|max:15',
             'model' => 'required|min:2|max:50',
             'year' => 'required|digits:4|integer|min:1900|max:'.(date('Y')+2),
@@ -79,7 +98,8 @@ class VehicleController extends Controller
             'max' => 'Túl hosszú 😳',
             'year' => 'Nem valid az év dude 😤',
             'regex' => 'Nem megfelelő formátum 🫥',
-            'image' => 'Nem kép faszim 👽'
+            'image' => 'Nem kép faszim 👽',
+            'unique' => 'Ez a rendszám már benne van a rendszerben 🧑🏿‍💻'
         ]);
 
         $file = $request->file('image');
@@ -108,16 +128,27 @@ class VehicleController extends Controller
 
     public function edit(Vehicle $vehicle) {
         if(!auth()->check()){
+            Session::put('redirectedFrom', 'vehicles.edit');
+
             return redirect()->route('login');
         }
 
         if(auth()->user()->is_admin != 1){
-            return abort(403);
+            return abort(403, 'Nem rendelkezel adminisztrátori joggal 👨🏼‍⚖️');
         }
         return view('vehicles.edit', ['vehicle' => $vehicle]);
     }
 
     public function update(Vehicle $vehicle, Request $request) {
+        if(!auth()->check()){
+            Session::put('redirectedFrom', 'vehicles.create');
+
+            return redirect()->route('login');
+        }
+
+        if(auth()->user()->is_admin != 1){
+            return abort(403, 'Nem rendelkezel adminisztrátori joggal 👨🏼‍⚖️');
+        }
         $request->validate([
             'brand' => 'nullable|min:3|max:15',
             'model' => 'nullable|min:2|max:50',

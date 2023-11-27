@@ -1,13 +1,13 @@
 <x-app-layout>
-  <div class="flex flex-col items-center justify-center p-6 bg-white dark:bg-gray-900">
+  <div class="flex flex-col items-center justify-center p-6">
     <div class="w-full max-w-2xl">
       @if (auth()->user()->is_admin == 1) 
-      <a 
-      class="inline-flex my-3 items-center justify-center text-sm shadow-lg border border-gray-300 dark:border-gray-700 font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary h-10 px-4 py-2 rounded-sm transition-all duration-500 hover:bg-gray-600  dark:bg-gray-800 dark:text-white cursor-pointer"
-      href={{route('vehicles.edit', $vehicle)}}
-      >
-        Jármű szerkeztése
-      </a>
+        <a 
+        class="inline-flex my-3 items-center justify-center text-sm shadow-lg border border-gray-300 dark:border-gray-700 bg-white hover:bg-gray-500 font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary h-10 px-4 py-2 rounded-sm transition-all duration-500 dark:text-black hover:text-white cursor-pointer"
+        href={{route('vehicles.edit', $vehicle)}}
+        >
+          Jármű szerkeztése
+        </a>
       @endif
       <img
         src={{$imageSrc}}
