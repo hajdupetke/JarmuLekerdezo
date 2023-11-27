@@ -19,7 +19,7 @@
                     <x-nav-link :href="route('incidents.create')" :active="request()->routeIs('incidents.create')">
                         Káresemény hozzáadása
                     </x-nav-link>
-                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('incidents.create')">
+                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
                         Felhasználók
                     </x-nav-link>
                 </div>
@@ -91,7 +91,7 @@
             <x-responsive-nav-link :href="route('incidents.create')" :active="request()->routeIs('incidents.create')">
                 Káresemény hozzáadása
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('incidents.create')">
+            <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
                 Felhasználók
             </x-responsive-nav-link>
             @endif

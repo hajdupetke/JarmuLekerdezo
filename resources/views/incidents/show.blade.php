@@ -37,8 +37,12 @@
           </form>
       </x-modal>
       @endif
+      @php
+        $time = strtotime($incident->time);
+
+      @endphp
       <div class="mt-4 space-y-2 text-black dark:text-white">
-        <h1 class="text-2xl font-semibold">{{$incident->location}} - {{$incident->time}}</h1>
+        <h1 class="text-2xl font-semibold">{{$incident->location}} - {{date('d/m/y H:i', $time)}}</h1>
         <p class="text-base font-medium text-gray-800 dark:text-gray-200">{{$incident->desc}}</p>
       </div>
       <h2 class="text-xl font-bold dark:text-white my-3">Járművek:</h2>
