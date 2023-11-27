@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
         // make 1 random user to be admin
         // make admin email admin@admin.com
 
-        \App\Models\User::all()->random(1)->each(  function ($user) {
+        \App\Models\User::all()->random(1)->each(function ($user) {
             $user->email = 'admin@admin.com';
             $user->is_admin = 1;
             $user->is_premium = 1;

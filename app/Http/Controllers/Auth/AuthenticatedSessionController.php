@@ -33,7 +33,7 @@ class AuthenticatedSessionController extends Controller
 
         if(Session::get('redirectedFrom')) {
             $route = Session::get('redirectedFrom');
-            Session::forget('redirectedFrom');
+            Session::put('redirectedFrom', 'home');
             return redirect()->route($route);
         }
         return redirect()->intended(RouteServiceProvider::HOME);
